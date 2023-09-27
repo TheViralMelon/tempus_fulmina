@@ -1,0 +1,58 @@
+{
+    "type": "origins:multiple",
+    "immobile": {
+        "type": "origins:modify_velocity",
+        "modifier": {
+            "value": -1,
+            "operation": "multiply_total"
+        }
+    },
+    "prevent_melee": {
+        "type": "origins:modify_attribute",
+        "attribute": "minecraft:generic.attack_damage",
+        "modifier": {
+            "operation": "set_total",
+            "value": 0
+        }
+    },
+    "prevent_projectile": {
+        "type": "origins:modify_projectile_damage",
+        "modifier": {
+            "operation": "set_total",
+            "value": 0
+        }
+    },
+    "prevent_selection": {
+        "type": "origins:prevent_block_selection"
+    },
+    "prevent_use": {
+        "type": "origins:prevent_entity_use"
+    },
+    "prevent_sprint": {
+        "type": "origins:prevent_sprinting"
+    },
+    "prevent_items": {
+        "type": "origins:prevent_item_use"
+    },
+    "prevent_elytra": {
+        "type": "origins:prevent_elytra_flight"
+    },
+    "remove": {
+        "type": "origins:action_over_time",
+        "interval": 12,
+        "entity_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:execute_command",
+                    "command": "tp @s @s"
+                },
+                {
+                    "type": "origins:revoke_power",
+                    "power": "tempus:amf/lock",
+                    "source": "tempus:blink"
+                }
+            ]
+        }
+    }
+}

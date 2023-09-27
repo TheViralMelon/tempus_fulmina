@@ -1,0 +1,17 @@
+{
+    "powers": [
+        "tempus:intensity/main",
+        "tempus:amf/display",
+        "tempus:conductivity/main",
+        "tempus:shrapnel/main",
+        "tempus:discharge/main",
+        "tempus:hyperactivity/main",
+        "tempus:white_hot/main",
+        "tempus:callback"
+    ],
+    "icon": "minecraft:lightning_rod",
+    "name": "Tempus Fulmina",
+    "impact": 3,
+    "order": 1,
+    "description": "§bTempus§r §bFulminae§r are beings of lightning and plasma, forced to regularly rejuvinate their energy and capable of using conductive materials to their advantage.\n§dCreated by TheViralMelon; original design by Bemoseemo"
+}

@@ -1,0 +1,102 @@
+{
+    "name": "§b§l§nConductivity",
+    "description": "Your powers often interact with §econductive§r objects -- those containing §egold§r, §firon§r, or §6copper§r. Entities become §econductive§r if they equip such items.\n§eConductive§r entities take double damage from your §elightning§r.",
+    "badges": [
+        {
+            "sprite": "minecraft:textures/item/knowledge_book.png",
+            "text": "§eChainmail§r §earmor§r is considered §econductive§r, but §eNetherite§r is not.\n\nStanding on §6copper§r or §7iron§r will halve the natural decay rate of §bCharge§r; standing on §egold§r will quintuple it."
+        },
+        {
+            "sprite": "minecraft:textures/item/book.png",
+            "text": "Although your own abilities will never consider you to be §econductive§r, they will affect §econductive§r §bTempus§r §bFulminae§r other than you.\n\nDropped §econductive§r items and falling §econductive§r blocks will act like §econductive§r entities, as will §eIron§r §eGolems§r."
+        }
+    ],
+    "type": "origins:multiple",
+    "gold_overlay": {
+        "type": "origins:overlay",
+        "texture": "minecraft:textures/misc/nausea.png",
+        "draw_mode": "nausea",
+        "draw_phase": "below_hud",
+        "strength": 0.35,
+        "blue": 0.5,
+        "visible_in_third_person": true,
+        "condition": {
+            "type": "origins:on_block",
+            "block_condition": {
+                "type": "origins:in_tag",
+                "tag": "tempus:gold"
+            }
+        }
+    },
+    "copper_overlay": {
+        "type": "origins:overlay",
+        "texture": "minecraft:textures/misc/nausea.png",
+        "draw_mode": "nausea",
+        "draw_phase": "below_hud",
+        "strength": 0.35,
+        "green": 0.75,
+        "blue": 0.5,
+        "visible_in_third_person": true,
+        "condition": {
+            "type": "origins:on_block",
+            "block_condition": {
+                "type": "origins:in_tag",
+                "tag": "tempus:copper"
+            }
+        }
+    },
+    "iron_overlay": {
+        "type": "origins:overlay",
+        "texture": "minecraft:textures/misc/nausea.png",
+        "draw_mode": "nausea",
+        "draw_phase": "below_hud",
+        "strength": 0.35,
+        "visible_in_third_person": true,
+        "condition": {
+            "type": "origins:on_block",
+            "block_condition": {
+                "type": "origins:in_tag",
+                "tag": "tempus:iron"
+            }
+        }
+    },
+    "tooltip": {
+        "type": "origins:tooltip",
+        "item_condition": {
+            "type": "origins:and",
+            "conditions": [
+                {
+                    "type": "origins:ingredient",
+                    "ingredient": {
+                        "tag": "tempus:conductive"
+                    }
+                },
+                {
+                    "type": "origins:ingredient",
+                    "ingredient": {
+                        "tag": "tempus:gold"
+                    },
+                    "inverted": true
+                }
+            ]
+        },
+        "text": "This item is §e§lconductive§r." 
+    },
+    "gold_tooltip": {
+        "type": "origins:tooltip",
+        "item_condition": {
+            "type": "origins:ingredient",
+            "ingredient": {
+                "tag": "tempus:gold"
+            }
+        },
+        "texts": [
+            {
+                "text": "This item is §e§lconductive§r"
+            },
+            {
+                "text": "and §6§lsuperconductive§r."
+            }
+        ] 
+    }
+}

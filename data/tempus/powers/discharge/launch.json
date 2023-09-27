@@ -1,0 +1,409 @@
+{
+    "type": "origins:action_on_callback",
+    "entity_action_gained": {
+        "type": "origins:and",
+        "actions": [
+            {
+                "type": "origins:if_else_list",
+                "actions": [
+                    {
+                        "condition": {
+                            "type": "origins:scoreboard",
+                            "objective": "tempus.dummy1",
+                            "name": "#detonateRadius",
+                            "comparison": "==",
+                            "compare_to": 1
+                        },
+                        "action": {
+                            "type": "origins:area_of_effect",
+                            "radius": 2,
+                            "bientity_action": {
+                                "type": "origins:and",
+                                "actions": [
+                                    {
+                                        "type": "origins:if_else",
+                                        "condition": {
+                                            "type": "origins:target_condition",
+                                            "condition": {
+                                                "type": "origins:scoreboard",
+                                                "objective": "tempus.conductive",
+                                                "comparison": "==",
+                                                "compare_to": 1
+                                            }
+                                        },
+                                        "if_action": {
+                                            "type": "origins:add_velocity",
+                                            "set": true,
+                                            "z": -0.75
+                                        },
+                                        "else_action": {
+                                            "type": "origins:add_velocity",
+                                            "set": true,
+                                            "z": 1
+                                        }
+                                    },
+                                    {
+                                        "type": "origins:target_action",
+                                        "action": {
+                                            "type": "origins:and",
+                                            "actions": [
+                                                {
+                                                    "type": "origins:if_else",
+                                                    "condition": {
+                                                        "type": "origins:nbt",
+                                                        "nbt": "{OnGround:1b}"
+                                                    },
+                                                    "if_action": {
+                                                        "type": "origins:add_velocity",
+                                                        "y": 0.2
+                                                    }
+                                                },
+                                                {
+                                                    "type": "origins:grant_power",
+                                                    "power": "tempus:discharge/immunity",
+                                                    "source": "tempus:discharge"
+                                                },
+                                                {
+                                                    "type": "origins:if_else",
+                                                    "condition": {
+                                                        "type": "origins:nbt",
+                                                        "nbt": "{Tags:[\"tempus.SpawnTracker\"]}"
+                                                    },
+                                                    "if_action": {
+                                                        "type": "origins:execute_command",
+                                                        "command": "tag @s add tempus.ValidSpawn"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "condition": {
+                            "type": "origins:scoreboard",
+                            "objective": "tempus.dummy1",
+                            "name": "#detonateRadius",
+                            "comparison": "==",
+                            "compare_to": 2
+                        },
+                        "action": {
+                            "type": "origins:area_of_effect",
+                            "radius": 4,
+                            "bientity_action": {
+                                "type": "origins:and",
+                                "actions": [
+                                    {
+                                        "type": "origins:if_else",
+                                        "condition": {
+                                            "type": "origins:target_condition",
+                                            "condition": {
+                                                "type": "origins:scoreboard",
+                                                "objective": "tempus.conductive",
+                                                "comparison": "==",
+                                                "compare_to": 1
+                                            }
+                                        },
+                                        "if_action": {
+                                            "type": "origins:add_velocity",
+                                            "set": true,
+                                            "z": -1.125
+                                        },
+                                        "else_action": {
+                                            "type": "origins:add_velocity",
+                                            "set": true,
+                                            "z": 1.5
+                                        }
+                                    },
+                                    {
+                                        "type": "origins:target_action",
+                                        "action": {
+                                            "type": "origins:and",
+                                            "actions": [
+                                                {
+                                                    "type": "origins:if_else",
+                                                    "condition": {
+                                                        "type": "origins:nbt",
+                                                        "nbt": "{OnGround:1b}"
+                                                    },
+                                                    "if_action": {
+                                                        "type": "origins:add_velocity",
+                                                        "y": 0.2
+                                                    }
+                                                },
+                                                {
+                                                    "type": "origins:grant_power",
+                                                    "power": "tempus:discharge/immunity",
+                                                    "source": "tempus:discharge"
+                                                },
+                                                {
+                                                    "type": "origins:if_else",
+                                                    "condition": {
+                                                        "type": "origins:nbt",
+                                                        "nbt": "{Tags:[\"tempus.SpawnTracker\"]}"
+                                                    },
+                                                    "if_action": {
+                                                        "type": "origins:execute_command",
+                                                        "command": "tag @s add tempus.ValidSpawn"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "condition": {
+                            "type": "origins:scoreboard",
+                            "objective": "tempus.dummy1",
+                            "name": "#detonateRadius",
+                            "comparison": "==",
+                            "compare_to": 3
+                        },
+                        "action": {
+                            "type": "origins:area_of_effect",
+                            "radius": 6,
+                            "bientity_action": {
+                                "type": "origins:and",
+                                "actions": [
+                                    {
+                                        "type": "origins:if_else",
+                                        "condition": {
+                                            "type": "origins:target_condition",
+                                            "condition": {
+                                                "type": "origins:scoreboard",
+                                                "objective": "tempus.conductive",
+                                                "comparison": "==",
+                                                "compare_to": 1
+                                            }
+                                        },
+                                        "if_action": {
+                                            "type": "origins:add_velocity",
+                                            "set": true,
+                                            "z": -1.5
+                                        },
+                                        "else_action": {
+                                            "type": "origins:add_velocity",
+                                            "set": true,
+                                            "z": 2
+                                        }
+                                    },
+                                    {
+                                        "type": "origins:target_action",
+                                        "action": {
+                                            "type": "origins:and",
+                                            "actions": [
+                                                {
+                                                    "type": "origins:if_else",
+                                                    "condition": {
+                                                        "type": "origins:nbt",
+                                                        "nbt": "{OnGround:1b}"
+                                                    },
+                                                    "if_action": {
+                                                        "type": "origins:add_velocity",
+                                                        "y": 0.2
+                                                    }
+                                                },
+                                                {
+                                                    "type": "origins:grant_power",
+                                                    "power": "tempus:discharge/immunity",
+                                                    "source": "tempus:discharge"
+                                                },
+                                                {
+                                                    "type": "origins:if_else",
+                                                    "condition": {
+                                                        "type": "origins:nbt",
+                                                        "nbt": "{Tags:[\"tempus.SpawnTracker\"]}"
+                                                    },
+                                                    "if_action": {
+                                                        "type": "origins:execute_command",
+                                                        "command": "tag @s add tempus.ValidSpawn"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "condition": {
+                            "type": "origins:scoreboard",
+                            "objective": "tempus.dummy1",
+                            "name": "#detonateRadius",
+                            "comparison": "==",
+                            "compare_to": 4
+                        },
+                        "action": {
+                            "type": "origins:area_of_effect",
+                            "radius": 8,
+                            "bientity_action": {
+                                "type": "origins:and",
+                                "actions": [
+                                    {
+                                        "type": "origins:if_else",
+                                        "condition": {
+                                            "type": "origins:target_condition",
+                                            "condition": {
+                                                "type": "origins:scoreboard",
+                                                "objective": "tempus.conductive",
+                                                "comparison": "==",
+                                                "compare_to": 1
+                                            }
+                                        },
+                                        "if_action": {
+                                            "type": "origins:add_velocity",
+                                            "set": true,
+                                            "z": -1.875
+                                        },
+                                        "else_action": {
+                                            "type": "origins:add_velocity",
+                                            "set": true,
+                                            "z": 2.5
+                                        }
+                                    },
+                                    {
+                                        "type": "origins:target_action",
+                                        "action": {
+                                            "type": "origins:and",
+                                            "actions": [
+                                                {
+                                                    "type": "origins:if_else",
+                                                    "condition": {
+                                                        "type": "origins:nbt",
+                                                        "nbt": "{OnGround:1b}"
+                                                    },
+                                                    "if_action": {
+                                                        "type": "origins:add_velocity",
+                                                        "y": 0.2
+                                                    }
+                                                },
+                                                {
+                                                    "type": "origins:grant_power",
+                                                    "power": "tempus:discharge/immunity",
+                                                    "source": "tempus:discharge"
+                                                },
+                                                {
+                                                    "type": "origins:if_else",
+                                                    "condition": {
+                                                        "type": "origins:nbt",
+                                                        "nbt": "{Tags:[\"tempus.SpawnTracker\"]}"
+                                                    },
+                                                    "if_action": {
+                                                        "type": "origins:execute_command",
+                                                        "command": "tag @s add tempus.ValidSpawn"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "condition": {
+                            "type": "origins:scoreboard",
+                            "objective": "tempus.dummy1",
+                            "name": "#detonateRadius",
+                            "comparison": "==",
+                            "compare_to": 5
+                        },
+                        "action": {
+                            "type": "origins:area_of_effect",
+                            "radius": 10,
+                            "bientity_action": {
+                                "type": "origins:and",
+                                "actions": [
+                                    {
+                                        "type": "origins:if_else",
+                                        "condition": {
+                                            "type": "origins:target_condition",
+                                            "condition": {
+                                                "type": "origins:scoreboard",
+                                                "objective": "tempus.conductive",
+                                                "comparison": "==",
+                                                "compare_to": 1
+                                            }
+                                        },
+                                        "if_action": {
+                                            "type": "origins:add_velocity",
+                                            "set": true,
+                                            "z": -2.25
+                                        },
+                                        "else_action": {
+                                            "type": "origins:add_velocity",
+                                            "set": true,
+                                            "z": 3
+                                        }
+                                    },
+                                    {
+                                        "type": "origins:target_action",
+                                        "action": {
+                                            "type": "origins:and",
+                                            "actions": [
+                                                {
+                                                    "type": "origins:if_else",
+                                                    "condition": {
+                                                        "type": "origins:nbt",
+                                                        "nbt": "{OnGround:1b}"
+                                                    },
+                                                    "if_action": {
+                                                        "type": "origins:add_velocity",
+                                                        "y": 0.2
+                                                    }
+                                                },
+                                                {
+                                                    "type": "origins:grant_power",
+                                                    "power": "tempus:discharge/immunity",
+                                                    "source": "tempus:discharge"
+                                                },
+                                                {
+                                                    "type": "origins:if_else",
+                                                    "condition": {
+                                                        "type": "origins:nbt",
+                                                        "nbt": "{Tags:[\"tempus.SpawnTracker\"]}"
+                                                    },
+                                                    "if_action": {
+                                                        "type": "origins:execute_command",
+                                                        "command": "tag @s add tempus.ValidSpawn"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "origins:execute_command",
+                "command": "scoreboard players reset @e[scores={tempus.conductive=1..}] tempus.conductive"
+            },
+            {
+                "type": "origins:execute_command",
+                "command": "execute as @e[tag=tempus.ValidSpawn,limit=1,sort=nearest] at @s if block ~ ~1 ~ air if block ~ ~2 ~ air run function tempus:hyperactivity/setspawn"
+            },
+            {
+                "type": "origins:execute_command",
+                "command": "tag @a remove tempus.SpawnPointer"
+            },
+            {
+                "type": "origins:execute_command",
+                "command": "kill @e[tag=tempus.SpawnTracker"
+            },
+            {
+                "type": "origins:revoke_power",
+                "power": "tempus:discharge/launch",
+                "source": "tempus:discharge"
+            }
+        ]
+    }
+}

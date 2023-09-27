@@ -1,0 +1,278 @@
+{
+    "type": "origins:multiple",
+    "amount": {
+        "type": "origins:resource",
+        "min": 0,
+        "max": 5,
+        "max_action": {
+            "type": "origins:grant_power",
+            "power": "tempus:discharge/active",
+            "source": "tempus:discharge"
+        }
+    },
+    "reduction": {
+        "type": "origins:resource",
+        "min": -12000,
+        "max": 0,
+        "start_value": -200
+    },
+    "init": {
+        "type": "origins:action_on_callback",
+        "entity_action_gained": {
+            "type": "origins:delay",
+            "ticks": 1,
+            "action": {
+                "type": "origins:and",
+                "actions": [
+                    {
+                        "type": "origins:modify_resource",
+                        "resource": "tempus:intensity/main_resource",
+                        "modifier": {
+                            "operation": "add_base_early",
+                            "value": 0,
+                            "resource": "tempus:discharge/charge_reduction"
+                        }
+                    },
+                    {
+                        "type": "origins:execute_command",
+                        "command": "execute store result score #reductionBase tempus.dummy1 run resource get @s tempus:discharge/charge_reduction"
+                    },
+                    {
+                        "type": "origins:modify_resource",
+                        "resource": "tempus:dischage/charge_reduction",
+                        "modifier": {
+                            "operation": "multiply_total",
+                            "value": 1.1
+                        }
+                    },
+                    {
+                        "type": "origins:execute_command",
+                        "command": "resource operation @s tempus:discharge/charge_reduction += #reductionBase tempus.dummy1"
+                    },
+                    {
+                        "type": "origins:if_else",
+                        "condition": {
+                            "type": "origins:resource",
+                            "resource": "tempus:intensity/main_resource",
+                            "comparison": "==",
+                            "compare_to": 0
+                        },
+                        "if_action": {
+                            "type": "origins:grant_power",
+                            "power": "tempus:discharge/active",
+                            "source": "tempus:discharge"
+                        }
+                    },
+                    {
+                        "type": "origins:change_resource",
+                        "resource": "tempus:discharge/charge_amount",
+                        "change": 1
+                    },
+                    {
+                        "type": "origins:execute_command",
+                        "command": "execute positioned ~ ~0.1 ~ rotated ~ 0 run function tempus:discharge/increase_fx"
+                    }
+                ]
+            }
+        }
+    },
+    "tick": {
+        "type": "origins:action_over_time",
+        "interval": 15,
+        "entity_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:modify_resource",
+                    "resource": "tempus:intensity/main_resource",
+                    "modifier": {
+                        "operation": "add_base_early",
+                        "value": 0,
+                        "resource": "tempus:discharge/charge_reduction"
+                    }
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "execute store result score #reductionBase tempus.dummy1 run resource get @s tempus:discharge/charge_reduction"
+                },
+                {
+                    "type": "origins:modify_resource",
+                    "resource": "tempus:dischage/charge_reduction",
+                    "modifier": {
+                        "operation": "multiply_total",
+                        "value": 1.1
+                    }
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "resource operation @s tempus:discharge/charge_reduction += #reductionBase tempus.dummy1"
+                },
+                {
+                    "type": "origins:if_else",
+                    "condition": {
+                        "type": "origins:resource",
+                        "resource": "tempus:intensity/main_resource",
+                        "comparison": "==",
+                        "compare_to": 0
+                    },
+                    "if_action": {
+                        "type": "origins:grant_power",
+                        "power": "tempus:discharge/active",
+                        "source": "tempus:discharge"
+                    }
+                },
+                {
+                    "type": "origins:change_resource",
+                    "resource": "tempus:discharge/charge_amount",
+                    "change": 1
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "execute positioned ~ ~0.1 ~ rotated ~ 0 run function tempus:discharge/increase_fx"
+                }
+            ]
+        }
+    },
+    "display": {
+        "type": "origins:action_over_time",
+        "interval": 1,
+        "entity_action": {
+            "type": "origins:execute_command",
+            "command": "execute rotated ~ 0 positioned ~ ~0.1 ~ run function tempus:discharge/passive_fx"
+        }
+    },
+    "slowed_movement": {
+        "type": "origins:modify_attribute",
+        "attribute": "minecraft:generic.movement_speed",
+        "modifier": {
+            "operation": "multiply_total",
+            "value": -0.25
+        }
+    },
+    "slowed_fall": {
+        "type": "origins:modify_falling",
+        "velocity": 0.01
+    },
+    "falldamage_reduce": {
+        "type": "origins:modify_damage_taken",
+        "damage_condition": {
+            "type": "origins:or",
+            "conditions": [
+                {
+                    "type": "origins:name",
+                    "name": "fall"
+                },
+                {
+                    "type": "origins:name",
+                    "name": "fall.player"
+                }
+            ]
+        },
+        "modifier": {
+            "operation": "multiply_total",
+            "value": -0.65
+        }
+    },
+    "higher_jump": {
+        "type": "origins:modify_jump",
+        "modifier": {
+            "operation": "multiply_total",
+            "value": 0.25
+        }
+    },
+    "damage_interrupt": {
+        "type": "origins:action_when_damage_taken",
+        "cooldown": 0,
+        "entity_action": {
+            "type": "origins:revoke_power",
+            "power": "tempus:discharge/charge",
+            "source": "tempus:discharge"
+        },
+        "damage_condition": {
+            "type": "origins:or",
+            "inverted": true,
+            "conditions": [
+                {
+                    "type": "origins:name",
+                    "name": "drown"
+                },
+                {
+                    "type": "origins:name",
+                    "name": "drown.player"
+                },
+                {
+                    "type": "origins:name",
+                    "name": "dryout"
+                },
+                {
+                    "type": "origins:name",
+                    "name": "dryout.player"
+                },
+                {
+                    "type": "origins:name",
+                    "name": "freeze"
+                },
+                {
+                    "type": "origins:name",
+                    "name": "freeze.player"
+                },
+                {
+                    "type": "origins:name",
+                    "name": "hotFloor"
+                },
+                {
+                    "type": "origins:name",
+                    "name": "hotFloor.player"
+                },
+                {
+                    "type": "origins:name",
+                    "name": "inFire"
+                },
+                {
+                    "type": "origins:name",
+                    "name": "inFire.player"
+                },
+                {
+                    "type": "origins:name",
+                    "name": "inWall"
+                },
+                {
+                    "type": "origins:name",
+                    "name": "inWall.player"
+                },
+                {
+                    "type": "origins:name",
+                    "name": "starve"
+                },
+                {
+                    "type": "origins:name",
+                    "name": "starve.player"
+                },
+                {
+                    "type": "origins:name",
+                    "name": "wither"
+                },
+                {
+                    "type": "origins:name",
+                    "name": "wither.player"
+                },
+                {
+                    "type": "origins:name",
+                    "name": "magic"
+                },
+                {
+                    "type": "origins:name",
+                    "name": "magic.player"
+                },
+                {
+                    "type": "origins:name",
+                    "name": "fall"
+                },
+                {
+                    "type": "origins:name",
+                    "name": "fall.player"
+                }
+            ]
+        }
+    }
+}

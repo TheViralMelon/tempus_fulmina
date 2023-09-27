@@ -1,0 +1,196 @@
+{
+    "type": "origins:action_on_callback",
+    "entity_action_gained": {
+        "type": "origins:and",
+        "actions": [
+            {
+                "type": "origins:execute_command",
+                "command": "say detecting..."
+            },
+            {
+                "type": "origins:if_else_list",
+                "actions": [
+                    {
+                        "condition": {
+                            "type": "origins:block_in_radius",
+                            "radius": 12,
+                            "block_condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:block",
+                                        "block": "minecraft:lightning_rod"
+                                    },
+                                    {
+                                        "type": "origins:block_state",
+                                        "property": "facing",
+                                        "enum": "down"
+                                    },
+                                    {
+                                        "type": "origins:block_state",
+                                        "property": "waterlogged",
+                                        "enum": "false"
+                                    }
+                                ]
+                            }
+                        },
+                        "action": {
+                            "type": "origins:execute_command",
+                            "command": "fill ~-12 ~-12 ~-12 ~12 ~12 ~12 command_block{auto:1b,Command:\"function tempus:hyperactivity/lr_down\"} replace lightning_rod[facing=down]"
+                        }
+                    },
+                    {
+                        "condition": {
+                            "type": "origins:block_in_radius",
+                            "radius": 12,
+                            "block_condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:block",
+                                        "block": "minecraft:lightning_rod"
+                                    },
+                                    {
+                                        "type": "origins:block_state",
+                                        "property": "facing",
+                                        "enum": "up"
+                                    },
+                                    {
+                                        "type": "origins:block_state",
+                                        "property": "waterlogged",
+                                        "enum": "false"
+                                    }
+                                ]
+                            }
+                        },
+                        "action": {
+                            "type": "origins:execute_command",
+                            "command": "fill ~-12 ~-12 ~-12 ~12 ~12 ~12 command_block{auto:1b,Command:\"function tempus:hyperactivity/lr_up\"} replace lightning_rod[facing=up]"
+                        }
+                    },
+                    {
+                        "condition": {
+                            "type": "origins:block_in_radius",
+                            "radius": 12,
+                            "block_condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:block",
+                                        "block": "minecraft:lightning_rod"
+                                    },
+                                    {
+                                        "type": "origins:block_state",
+                                        "property": "facing",
+                                        "enum": "south"
+                                    },
+                                    {
+                                        "type": "origins:block_state",
+                                        "property": "waterlogged",
+                                        "enum": "false"
+                                    }
+                                ]
+                            }
+                        },
+                        "action": {
+                            "type": "origins:execute_command",
+                            "command": "fill ~-12 ~-12 ~-12 ~12 ~12 ~12 command_block{auto:1b,Command:\"function tempus:hyperactivity/lr_south\"} replace lightning_rod[facing=south]"
+                        }
+                    },
+                    {
+                        "condition": {
+                            "type": "origins:block_in_radius",
+                            "radius": 12,
+                            "block_condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:block",
+                                        "block": "minecraft:lightning_rod"
+                                    },
+                                    {
+                                        "type": "origins:block_state",
+                                        "property": "facing",
+                                        "enum": "north"
+                                    },
+                                    {
+                                        "type": "origins:block_state",
+                                        "property": "waterlogged",
+                                        "enum": "false"
+                                    }
+                                ]
+                            }
+                        },
+                        "action": {
+                            "type": "origins:execute_command",
+                            "command": "fill ~-12 ~-12 ~-12 ~12 ~12 ~12 command_block{auto:1b,Command:\"function tempus:hyperactivity/lr_north\"} replace lightning_rod[facing=north]"
+                        }
+                    },
+                    {
+                        "condition": {
+                            "type": "origins:block_in_radius",
+                            "radius": 12,
+                            "block_condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:block",
+                                        "block": "minecraft:lightning_rod"
+                                    },
+                                    {
+                                        "type": "origins:block_state",
+                                        "property": "facing",
+                                        "enum": "west"
+                                    },
+                                    {
+                                        "type": "origins:block_state",
+                                        "property": "waterlogged",
+                                        "enum": "false"
+                                    }
+                                ]
+                            }
+                        },
+                        "action": {
+                            "type": "origins:execute_command",
+                            "command": "fill ~-12 ~-12 ~-12 ~12 ~12 ~12 command_block{auto:1b,Command:\"function tempus:hyperactivity/lr_west\"} replace lightning_rod[facing=west]"
+                        }
+                    },
+                    {
+                        "condition": {
+                            "type": "origins:block_in_radius",
+                            "radius": 12,
+                            "block_condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:block",
+                                        "block": "minecraft:lightning_rod"
+                                    },
+                                    {
+                                        "type": "origins:block_state",
+                                        "property": "facing",
+                                        "enum": "east"
+                                    },
+                                    {
+                                        "type": "origins:block_state",
+                                        "property": "waterlogged",
+                                        "enum": "false"
+                                    }
+                                ]
+                            }
+                        },
+                        "action": {
+                            "type": "origins:execute_command",
+                            "command": "fill ~-12 ~-12 ~-12 ~12 ~12 ~12 command_block{auto:1b,Command:\"function tempus:hyperactivity/lr_east\"} replace lightning_rod[facing=east]"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "origins:revoke_power",
+                "power": "tempus:hyperactivity/detect",
+                "source": "tempus:hyperactivity"
+            }
+        ]
+    }
+}

@@ -1,0 +1,132 @@
+{
+    "type": "origins:multiple",
+    "callback": {
+        "type": "origins:action_on_callback",
+        "entity_action_gained": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:execute_command",
+                    "command": "schedule function tempus:amf/find_worldspawn 1t"
+                },
+                {
+                    "type": "origins:clear_effect"
+                }
+            ]
+        }
+    },
+    "sfx": {
+        "type": "origins:action_over_time",
+        "interval": 1,
+        "entity_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:execute_command",
+                    "command": "playsound minecraft:entity.elder_guardian.curse player @a ~ ~ ~ 0.2 2"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "playsound minecraft:entity.elder_guardian.curse player @a ~ ~ ~ 0.2 2"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "playsound minecraft:entity.lightning_bolt.thunder player @a ~ ~ ~ 0.5 2"
+                }
+            ]
+        }
+    },
+    "invul": {
+        "type": "origins:invulnerability",
+        "damage_condition": {
+            "type": "origins:constant",
+            "value": true
+        }
+    },
+    "prevent_melee": {
+        "type": "origins:modify_attribute",
+        "attribute": "minecraft:generic.attack_damage",
+        "modifier": {
+            "operation": "set_total",
+            "value": 0
+        }
+    },
+    "prevent_projectile": {
+        "type": "origins:modify_projectile_damage",
+        "modifier": {
+            "operation": "set_total",
+            "value": 0
+        }
+    },
+    "prevent_selection": {
+        "type": "origins:prevent_block_selection"
+    },
+    "prevent_use": {
+        "type": "origins:prevent_entity_use"
+    },
+    "prevent_sprint": {
+        "type": "origins:prevent_sprinting"
+    },
+    "prevent_items": {
+        "type": "origins:prevent_item_use"
+    },
+    "prevent_elytra": {
+        "type": "origins:prevent_elytra_flight"
+    },
+    "dust": {
+        "type": "origins:particle",
+        "particle": {
+            "type": "dust_color_transition",
+            "params": "1.0 1.0 0.0 1.0 0.0 1.0 1.0"
+        },
+        "frequency": 1,
+        "count": 4,
+        "speed": 1,
+        "spread": {
+            "x": 0.3,
+            "y": 0.6,
+            "z": 0.3
+        }
+    },
+    "sparks": {
+        "type": "origins:particle",
+        "particle": {
+            "type": "minecraft:electric_spark",
+            "params": ""
+        },
+        "frequency": 1,
+        "count": 5,
+        "speed": 0,
+        "spread": {
+            "x": 0.3,
+            "y": 0.6,
+            "z": 0.3
+        }
+    },
+    "shaking": {
+        "type": "origins:shaking"
+    },
+    "delay": {
+        "type": "origins:action_over_time",
+        "interval": 20,
+        "entity_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:execute_command",
+                    "command": "tp @s @s"
+                },
+                {
+                    "type": "origins:grant_power",
+                    "power": "tempus:amf/active",
+                    "source": "tempus:amf"
+                },
+                {
+                    "type": "origins:revoke_power",
+                    "power": "tempus:amf/init",
+                    "source": "tempus:intensity"
+                }
+            ]
+        }
+    }
+}

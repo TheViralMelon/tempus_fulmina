@@ -1,0 +1,87 @@
+{
+    "name": "§b§l§nDischarge",
+    "description": "Press §aSecondary§r to charge an electric blast, unleashing once the button is pressed again. Consumes §bCharge§r.\nThe blast pushes entities away in its radius, including you. §eConductive§r entities are pulled instead.",
+    "badges": [
+        {
+            "sprite": "minecraft:textures/item/knowledge_book.png",
+            "text": "The rate at which §bCharge§r is consumed becomes exponentially higher the longer the ability is charged."
+        },
+        {
+            "sprite": "minecraft:textures/item/enchanted_book.png",
+            "text": "Affected entities are immune to fall damage until they land, allowing you to safely use the blast for movement.\n\nIf you don't wish to be pushed by the blast, simply don't move after casting it.\n\nPulling a §econductive§r foe with this ability while spending all your remaining §bCharge§r in the process is a good way to set up for §bA§r §bMoment,§r §bWhole§r's powerful §elightning§r."
+        },
+        {
+            "sprite": "minecraft:textures/item/book.png",
+            "text": "While the pushing effect is stronger the closer the target is to the center of the blast, §econductive§r targets are pulled more the farther away they are from the center -- the pull will always attempt to bring the entity directly to you.\n\nThis ability consumes ~1.66% of your maximum §bCharge§r when charged the minimal amount; each time the radius increases as it is charged longer, the §bCharge§r drain increases by a factor of 2.1."
+        }
+    ],
+    "type": "origins:multiple",
+    "cooldown": {
+        "type": "origins:cooldown",
+        "cooldown": 40,
+        "hud_render": {
+            "inverted": true,
+            "condition": {
+                "type": "origins:resource",
+                "resource": "tempus:discharge/main_cooldown",
+                "comparison": ">=",
+                "compare_to": 1
+            },
+            "sprite_location": "origins:textures/gui/community/huang/resource_bar_01.png",
+            "bar_index": 19
+        }
+    },
+    "activate": {
+        "type": "origins:active_self",
+        "key": {
+            "key": "key.origins.secondary_active",
+            "continuous": false
+        },
+        "cooldown": 0,
+        "condition": {
+            "type": "origins:resource",
+            "resource": "tempus:discharge/main_cooldown",
+            "comparison": "==",
+            "compare_to": 0
+        },
+        "entity_action": {
+            "type": "origins:if_else",
+            "condition": {
+                "type": "origins:and",
+                "conditions": [
+                    {
+                        "type": "origins:resource",
+                        "resource": "tempus:discharge/charge_amount",
+                        "comparison": ">=",
+                        "compare_to": 1
+                    },
+                    {
+                        "type": "origins:or",
+                        "conditions": [
+                            {
+                                "type": "origins:power",
+                                "power": "tempus:discharge/charge",
+                                "source": "tempus:discharge"
+                            },
+                            {
+                                "type": "origins:power",
+                                "power": "tempus:discharge/active",
+                                "source": "tempus:discharge"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "if_action": {
+                "type": "origins:grant_power",
+                "power": "tempus:discharge/active",
+                "source": "tempus:discharge"
+            },
+            "else_action": {
+                "type": "origins:grant_power",
+                "power": "tempus:discharge/charge",
+                "source": "tempus:discharge"
+            }
+        }
+    }
+}

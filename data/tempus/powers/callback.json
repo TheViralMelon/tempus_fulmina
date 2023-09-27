@@ -1,0 +1,69 @@
+{
+    "type": "origins:action_on_callback",
+    "hidden": true,
+    "entity_action_added": {
+        "type": "origins:execute_command",
+        "command": "tag @s remove tempus.SpawnPointer"
+    },
+    "entity_action_gained": {
+        "type": "origins:and",
+        "actions": [
+            {
+                "type": "origins:execute_command",
+                "command": "function tempus:init"
+            },
+            {
+                "type": "origins:feed",
+                "food": 20,
+                "saturation": 20
+            }
+        ]
+    },
+    "entity_action_respawned": {
+        "type": "origins:delay",
+        "ticks": 1,
+        "action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:change_resource",
+                    "resource": "tempus:intensity/main_resource",
+                    "change": 12000
+                },
+                {
+                    "type": "origins:revoke_power",
+                    "power": "tempus:discharge/immunity",
+                    "source": "tempus:discharge"
+                }
+            ]
+        }
+    },
+    "entity_action_lost": {
+        "type": "origins:and",
+        "actions": [
+            {
+                "type": "origins:execute_command",
+                "command": "scoreboard players reset @s tempus.dummy1"
+            },
+            {
+                "type": "origins:revoke_power",
+                "power": "tempus:amf/init",
+                "source": "tempus:intensity"
+            },
+            {
+                "type": "origins:revoke_power",
+                "power": "tempus:blink",
+                "source": "tempus:tempus"
+            },
+            {
+                "type": "origins:revoke_power",
+                "power": "tempus:discharge/charge",
+                "source": "tempus:discharge"
+            },
+            {
+                "type": "origins:execute_command",
+                "command": "tag @s remove tempus.AmfBlink"
+            }
+        ]
+    }
+}

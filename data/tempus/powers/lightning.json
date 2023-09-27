@@ -1,0 +1,427 @@
+{
+    "type": "origins:action_on_callback",
+    "entity_action_added": {
+        "type": "origins:delay",
+        "ticks": 1,
+        "action": {
+            "type": "origins:execute_command",
+            "command": "kill @s"
+        }
+    },
+    "entity_action_gained": {
+        "type": "origins:and",
+        "actions": [
+            {
+                "type": "origins:if_else",
+                "condition": {
+                    "type": "origins:nbt",
+                    "nbt": "{Tags:[\"tempus.Spawned\"]}",
+                    "inverted": true
+                },
+                "if_action": {
+                    "type": "origins:and",
+                    "actions": [
+                        {
+                            "type": "origins:execute_command",
+                            "command": "scoreboard players set #lightningStep tempus.dummy1 100"
+                        },
+                        {
+                            "type": "origins:if_else",
+                            "condition": {
+                                "type": "origins:in_block",
+                                "block_condition": {
+                                    "type": "origins:block",
+                                    "block": "minecraft:water"
+                                }
+                            },
+                            "if_action": {
+                                "type": "origins:area_of_effect",
+                                "radius": 4.5,
+                                "bientity_condition": {
+                                    "type": "origins:target_condition",
+                                    "condition": {
+                                        "type": "origins:and",
+                                        "conditions": [
+                                            {
+                                                "type": "origins:nbt",
+                                                "nbt": "{Tags:[\"tempus.LightningOwner\"]}",
+                                                "inverted": true
+                                            },
+                                            {
+                                                "type": "origins:living"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "bientity_action": {
+                                    "type": "origins:target_action",
+                                    "action": {
+                                        "type": "origins:execute_command",
+                                        "command": "tag @s add tempus.LightningTarget"
+                                    }
+                                }
+                            },
+                            "else_action": {
+                                "type": "origins:area_of_effect",
+                                "radius": 1.5,
+                                "bientity_condition": {
+                                    "type": "origins:target_condition",
+                                    "condition": {
+                                        "type": "origins:and",
+                                        "conditions": [
+                                            {
+                                                "type": "origins:nbt",
+                                                "nbt": "{Tags:[\"tempus.LightningOwner\"]}",
+                                                "inverted": true
+                                            },
+                                            {
+                                                "type": "origins:living"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "bientity_action": {
+                                    "type": "origins:target_action",
+                                    "action": {
+                                        "type": "origins:execute_command",
+                                        "command": "tag @s add tempus.LightningTarget"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "origins:execute_command",
+                            "command": "summon armor_stand ~ ~ ~ {Invisible:1b,Invulnerable:1b,Tags:[\"tempus.LightningBase\"]}"
+                        },
+                        {
+                            "type": "origins:execute_command",
+                            "command": "scoreboard players operation #storedLightningStep tempus.dummy1 = #lightningStep tempus.dummy1"
+                        },
+                        {
+                            "type": "origins:execute_command",
+                            "command": "particle minecraft:end_rod ~ ~ ~ 0 0 0 0.4 30 force @a"
+                        },
+                        {
+                            "type": "origins:execute_command",
+                            "command": "particle dust 1 1 1 1 ~ ~ ~ 0.4 0.4 0.4 1 20 force @a"  
+                        },
+                        {
+                            "type": "origins:execute_command",
+                            "command": "particle explosion ~ ~ ~ 0 0 0 0 3 force @a"  
+                        },
+                        {
+                            "type": "origins:execute_command",
+                            "command": "playsound minecraft:entity.lightning_bolt.thunder player @a[distance=..25] ~ ~ ~ 1 2 0.5"  
+                        },
+                        {
+                            "type": "origins:execute_command",
+                            "command": "playsound minecraft:entity.lightning_bolt.thunder player @a[distance=..25] ~ ~ ~ 1 2 0.5"  
+                        },
+                        {
+                            "type": "origins:execute_command",
+                            "command": "playsound minecraft:entity.lightning_bolt.impact player @a[distance=..25] ~ ~ ~ 0.5 2 0.25"  
+                        },
+                        {
+                            "type": "origins:execute_command",
+                            "command": "tag @s add tempus.Spawned"
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "origins:execute_command",
+                "command": "tellraw @a {\"score\":{\"objective\":\"tempus.dummy1\",\"name\":\"#lightningStep\"}}"
+            },
+            {
+                "type": "origins:execute_command",
+                "command": "particle end_rod ~ ~ ~ 0 0 0 0 1 force @a"
+            },
+            {
+                "type": "origins:if_else",
+                "condition": {
+                    "type": "origins:in_block",
+                    "block_condition": {
+                        "type": "origins:block",
+                        "block": "minecraft:water"
+                    }
+                },
+                "if_action": {
+                    "type": "origins:area_of_effect",
+                    "radius": 2.4,
+                    "bientity_condition": {
+                        "type": "origins:target_condition",
+                        "condition": {
+                            "type": "origins:and",
+                            "conditions": [
+                                {
+                                    "type": "origins:nbt",
+                                    "nbt": "{Tags:[\"tempus.LightningOwner\"]}",
+                                    "inverted": true
+                                },
+                                {
+                                    "type": "origins:living"
+                                }
+                            ]
+                        }
+                    },
+                    "bientity_action": {
+                        "type": "origins:target_action",
+                        "action": {
+                            "type": "origins:execute_command",
+                            "command": "tag @s add tempus.LightningTarget"
+                        }
+                    }
+                },
+                "else_action": {
+                    "type": "origins:area_of_effect",
+                    "radius": 0.8,
+                    "bientity_condition": {
+                        "type": "origins:target_condition",
+                        "condition": {
+                            "type": "origins:and",
+                            "conditions": [
+                                {
+                                    "type": "origins:nbt",
+                                    "nbt": "{Tags:[\"tempus.LightningOwner\"]}",
+                                    "inverted": true
+                                },
+                                {
+                                    "type": "origins:living"
+                                }
+                            ]
+                        }
+                    },
+                    "bientity_action": {
+                        "type": "origins:target_action",
+                        "action": {
+                            "type": "origins:execute_command",
+                            "command": "tag @s add tempus.LightningTarget"
+                        }
+                    }
+                }
+            },
+            {
+                "type": "origins:execute_command",
+                "command": "tp @s ~ ~0.15 ~"
+            },
+            {
+                "type": "origins:if_else_list",
+                "actions": [
+                    {
+                        "condition": {
+                            "type": "origins:in_block",
+                            "block_condition": {
+                                "type": "origins:movement_blocking"
+                            }
+                        },
+                        "action": {
+                            "type": "origins:execute_command",
+                            "command": "tag @s add tempus.BlockCollided"
+                        }
+                    },
+                    {
+                        "condition": {
+                            "type": "origins:and",
+                            "conditions": [
+                                {
+                                    "type": "origins:nbt",
+                                    "nbt": "{Tags:[\"tempus.BlockCollided\"]}"
+                                },
+                                {
+                                    "type": "origins:in_block",
+                                    "block_condition": {
+                                        "type": "origins:movement_blocking"
+                                    },
+                                    "inverted": true
+                                }
+                            ]
+                        },
+                        "action": {
+                            "type": "origins:and",
+                            "actions": [
+                                {
+                                    "type": "origins:execute_command",
+                                    "command": "particle explosion ~ ~ ~ 0.01 0.01 0.01 0 1 force @a"
+                                },
+                                {
+                                    "type": "origins:execute_command",
+                                    "command": "tag @s remove tempus.BlockCollided"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "origins:choice",
+                "actions": [
+                    {
+                        "element": {
+                            "type": "origins:if_else",
+                            "condition": {
+                                "type": "origins:scoreboard",
+                                "name": "#lightningLimiterX",
+                                "objective": "tempus.dummy1",
+                                "comparison": ">=",
+                                "compare_to": -4
+                            },
+                            "if_action": {
+                                "type": "origins:and",
+                                "actions": [
+                                    {
+                                        "type": "origins:execute_command",
+                                        "command": "tp @s ^-0.2 ^ ^"
+                                    },
+                                    {
+                                        "type": "origins:execute_command",
+                                        "command": "scoreboard players remove #lightningLimiterX tempus.dummy1 1"
+                                    }
+                                ]
+                            }
+                        },
+                        "weight": 2
+                    },
+                    {
+                        "element": {
+                            "type": "origins:if_else",
+                            "condition": {
+                                "type": "origins:scoreboard",
+                                "name": "#lightningLimiterX",
+                                "objective": "tempus.dummy1",
+                                "comparison": "<=",
+                                "compare_to": 4
+                            },
+                            "if_action": {
+                                "type": "origins:and",
+                                "actions": [
+                                    {
+                                        "type": "origins:execute_command",
+                                        "command": "tp @s ^0.2 ^ ^"
+                                    },
+                                    {
+                                        "type": "origins:execute_command",
+                                        "command": "scoreboard players add #lightningLimiterX tempus.dummy1 1"
+                                    }
+                                ]
+                            }
+                        },
+                        "weight": 2
+                    },
+                    {
+                        "element": {
+                            "type": "origins:if_else",
+                            "condition": {
+                                "type": "origins:scoreboard",
+                                "name": "#lightningLimiterZ",
+                                "objective": "tempus.dummy1",
+                                "comparison": ">=",
+                                "compare_to": -4
+                            },
+                            "if_action": {
+                                "type": "origins:and",
+                                "actions": [
+                                    {
+                                        "type": "origins:execute_command",
+                                        "command": "tp @s ^ ^ ^-0.2"
+                                    },
+                                    {
+                                        "type": "origins:execute_command",
+                                        "command": "scoreboard players remove #lightningLimiterZ tempus.dummy1 1"
+                                    }
+                                ]
+                            }
+                        },
+                        "weight": 2
+                    },
+                    {
+                        "element": {
+                            "type": "origins:if_else",
+                            "condition": {
+                                "type": "origins:scoreboard",
+                                "name": "#lightningLimiterZ",
+                                "objective": "tempus.dummy1",
+                                "comparison": "<=",
+                                "compare_to": 4
+                            },
+                            "if_action": {
+                                "type": "origins:and",
+                                "actions": [
+                                    {
+                                        "type": "origins:execute_command",
+                                        "command": "tp @s ^ ^ ^0.2"
+                                    },
+                                    {
+                                        "type": "origins:execute_command",
+                                        "command": "scoreboard players add #lightningLimiterZ tempus.dummy1 1"
+                                    }
+                                ]
+                            }
+                        },
+                        "weight": 2
+                    },
+                    {
+                        "element": {
+                            "type": "origins:nothing"
+                        },
+                        "weight": 3
+                    }
+                ]
+            },
+            {
+                "type": "origins:revoke_power",
+                "power": "tempus:lightning",
+                "source": "tempus:tempus"
+            }
+        ]
+    },
+    "entity_action_lost": {
+        "type": "origins:if_else",
+        "condition": {
+            "type": "origins:scoreboard",
+            "name": "#lightningStep",
+            "objective": "tempus.dummy1",
+            "comparison": "<=",
+            "compare_to": 0
+        },
+        "if_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:execute_command",
+                    "command": "particle minecraft:dust_color_transition 1.0 1.0 0.0 3.0 0.0 1.0 1.0 ~ ~ ~ 0.8 0.4 0.8 1 100 force @a"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "execute at @e[tag=tempus.LightningBase,limit=1] run summon armor_stand ~ ~ ~ {Invisible:1b,Small:1b,Marker:1b,Tags:[\"tempus.LightningHitbox\"]}"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "kill @e[tag=tempus.LightningBase]"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "power grant @e[tag=tempus.LightningHitbox] tempus:lightning_hitbox tempus:lightning"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "kill @s"
+                }
+                
+            ]
+        },
+        "else_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:execute_command",
+                    "command": "scoreboard players remove #lightningStep tempus.dummy1 1"
+                },
+                {
+                    "type": "origins:grant_power",
+                    "power": "tempus:lightning",
+                    "source": "tempus:tempus"
+                }
+            ]
+        }
+    }
+}

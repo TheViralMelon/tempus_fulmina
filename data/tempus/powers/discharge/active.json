@@ -1,0 +1,75 @@
+{
+    "type": "origins:multiple",
+    "delay": {
+        "type": "origins:action_over_time",
+        "interval": 6,
+        "entity_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:execute_command",
+                    "command": "tag @s add tempus.DischargeOwner"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "scoreboard players set #findSpawn tempus.dummy1 0"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "execute as @e[tag=tempus.DischargeTracker] at @s run function tempus:discharge/find_tracker"
+                },
+                {
+                    "type": "origins:revoke_power",
+                    "power": "tempus:discharge/active",
+                    "source": "tempus:discharge"
+                },
+                {
+                    "type": "origins:trigger_cooldown",
+                    "power": "tempus:discharge/main_cooldown"
+                }
+            ]
+        }
+    },
+    "hyperactivity": {
+        "type": "origins:action_over_time",
+        "interval": 5,
+        "entity_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:execute_command",
+                    "command": "say the j of the dark souls of the spikestrip of the gd1"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "tag @s add tempus.SpawnPointer"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "scoreboard players set #findSpawn tempus.dummy1 1"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "execute as @e[tag=tempus.DischargeTracker] at @s run function tempus:discharge/find_tracker"
+                }
+            ]
+        }
+    },
+    "callback": {
+        "type": "origins:action_on_callback",
+        "entity_action_gained": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:execute_command",
+                    "command": "function tempus:discharge/active_start"
+                },
+                {
+                    "type": "origins:revoke_power",
+                    "power": "tempus:discharge/charge",
+                    "source": "tempus:discharge"
+                }
+            ]
+        }
+    }
+}

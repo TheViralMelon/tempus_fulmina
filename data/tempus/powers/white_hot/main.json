@@ -1,0 +1,54 @@
+{
+    "name": "§b§l§nWhite Hot",
+    "description": "You are immune to fire and lightning, and can pass through other entities without colliding.\nSustained by §bCharge§r rather than traditional energy, you can't exhaust.",
+    "badges": [
+        {
+            "sprite": "minecraft:textures/item/enchanted_book.png",
+            "text": "Your lack of collision makes it much easier to strike enemies directly with §elightning§r from §bA§r §bMoment,§r §bWhole§r and §bCurrent§r."
+        },
+        {
+            "sprite": "minecraft:textures/item/book.png",
+            "text": "Your fire immunity includes immunity to lava.\n\nAlthough you never exhaust, you cannot regenerate naturally or through status effects, and must rely on §bA§r §bMoment,§r §bWhole§r to heal.\n\nFoods that are edible at full hunger, like §eGolden§r §eApples§r, can still be consumed for their special effects."
+        }
+    ],
+    "type": "origins:multiple",
+    "fire_immunity": {
+        "type": "origins:fire_immunity"
+    },
+    "lightning_immunity": {
+        "type": "origins:invulnerability",
+        "damage_condition": {
+            "type": "origins:or",
+            "conditions": [
+                {
+                    "type": "origins:name",
+                    "name": "lightningBolt"
+                },
+                {
+                    "type": "origins:name",
+                    "name": "lightningBolt.player"
+                }
+            ]
+        }
+    },
+    "no_collision": {
+        "type": "origins:prevent_entity_collision"
+    },
+    "no_exhaustion": {
+        "type": "origins:modify_exhaustion",
+        "modifier": {
+            "operation": "set_total",
+            "value": 0
+        }
+    },
+    "no_regen": {
+        "type": "origins:disable_regen"
+    },
+    "effect_immunity": {
+        "type": "origins:effect_immunity",
+        "effects": [
+            "minecraft:regeneration",
+            "minecraft:instant_health"
+        ]
+    }
+}

@@ -1,0 +1,259 @@
+{
+    "type": "origins:multiple",
+    "timer": {
+        "type": "origins:resource",
+        "min": 0,
+        "max": 100
+    },
+    "is_gold": {
+        "type": "origins:resource",
+        "min": 0,
+        "max": 1
+    },
+    "tick": {
+        "type": "origins:action_over_time",
+        "interval": 1,
+        "entity_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:if_else",
+                    "condition": {
+                        "type": "origins:resource",
+                        "resource": "tempus:shrapnel/block_conductive_timer",
+                        "comparison": "<",
+                        "compare_to": 100
+                    },
+                    "if_action": {
+                        "type": "origins:change_resource",
+                        "resource": "tempus:shrapnel/block_conductive_timer",
+                        "change": 1
+                    },
+                    "else_action": {
+                        "type": "origins:execute_command",
+                        "command": "kill @s"
+                    }
+                },
+                {
+                    "type": "origins:if_else",
+                    "condition": {
+                        "type": "origins:in_block",
+                        "block_condition": {
+                            "type": "origins:movement_blocking",
+                            "inverted": true
+                        }
+                    },
+                    "if_action": {
+                        "type": "origins:execute_command",
+                        "command": "kill @s"
+                    }
+                },
+                {
+                    "type": "origins:if_else",
+                    "condition": {
+                        "type": "origins:resource",
+                        "resource": "tempus:shrapnel/block_conductive_is_gold",
+                        "comparison": "==",
+                        "compare_to": 1
+                    },
+                    "if_action": {
+                        "type": "origins:block_action_at",
+                        "block_action": {
+                            "type": "origins:and",
+                            "actions": [
+                                {
+                                    "type": "origins:offset",
+                                    "x": -1,
+                                    "action": {
+                                        "type": "origins:if_else",
+                                        "condition": {
+                                            "type": "origins:movement_blocking",
+                                            "inverted": true
+                                        },
+                                        "if_action": {
+                                            "type": "origins:execute_command",
+                                            "command": "particle block gold_block ~0.45 ~ ~ 0 0.15 0 1 1 force @a"
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "origins:offset",
+                                    "x": 1,
+                                    "action": {
+                                        "type": "origins:if_else",
+                                        "condition": {
+                                            "type": "origins:movement_blocking",
+                                            "inverted": true
+                                        },
+                                        "if_action": {
+                                            "type": "origins:execute_command",
+                                            "command": "particle block gold_block ~-0.45 ~ ~ 0 0.15 0 1 1 force @a"
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "origins:offset",
+                                    "y": -1,
+                                    "action": {
+                                        "type": "origins:if_else",
+                                        "condition": {
+                                            "type": "origins:movement_blocking",
+                                            "inverted": true
+                                        },
+                                        "if_action": {
+                                            "type": "origins:execute_command",
+                                            "command": "particle block gold_block ~ ~0.45 ~ 0.15 0 0.15 1 1 force @a"
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "origins:offset",
+                                    "y": 1,
+                                    "action": {
+                                        "type": "origins:if_else",
+                                        "condition": {
+                                            "type": "origins:movement_blocking",
+                                            "inverted": true
+                                        },
+                                        "if_action": {
+                                            "type": "origins:execute_command",
+                                            "command": "particle block gold_block ~ ~-0.45 ~ 0.15 0 0.15 1 1 force @a"
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "origins:offset",
+                                    "z": -1,
+                                    "action": {
+                                        "type": "origins:if_else",
+                                        "condition": {
+                                            "type": "origins:movement_blocking",
+                                            "inverted": true
+                                        },
+                                        "if_action": {
+                                            "type": "origins:execute_command",
+                                            "command": "particle block gold_block ~ ~ ~0.45 0 0.15 0 1 1 force @a"
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "origins:offset",
+                                    "z": 1,
+                                    "action": {
+                                        "type": "origins:if_else",
+                                        "condition": {
+                                            "type": "origins:movement_blocking",
+                                            "inverted": true
+                                        },
+                                        "if_action": {
+                                            "type": "origins:execute_command",
+                                            "command": "particle block gold_block ~ ~ ~-0.45 0 0.15 0 1 1 force @a"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "else_action": {
+                        "type": "origins:block_action_at",
+                        "block_action": {
+                            "type": "origins:and",
+                            "actions": [
+                                {
+                                    "type": "origins:offset",
+                                    "x": -1,
+                                    "action": {
+                                        "type": "origins:if_else",
+                                        "condition": {
+                                            "type": "origins:movement_blocking",
+                                            "inverted": true
+                                        },
+                                        "if_action": {
+                                            "type": "origins:execute_command",
+                                            "command": "particle block iron_block ~0.45 ~ ~ 0 0.15 0 1 1 force @a"
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "origins:offset",
+                                    "x": 1,
+                                    "action": {
+                                        "type": "origins:if_else",
+                                        "condition": {
+                                            "type": "origins:movement_blocking",
+                                            "inverted": true
+                                        },
+                                        "if_action": {
+                                            "type": "origins:execute_command",
+                                            "command": "particle block iron_block ~-0.45 ~ ~ 0 0.15 0 1 1 force @a"
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "origins:offset",
+                                    "y": -1,
+                                    "action": {
+                                        "type": "origins:if_else",
+                                        "condition": {
+                                            "type": "origins:movement_blocking",
+                                            "inverted": true
+                                        },
+                                        "if_action": {
+                                            "type": "origins:execute_command",
+                                            "command": "particle block iron_block ~ ~0.45 ~ 0.15 0 0.15 1 1 force @a"
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "origins:offset",
+                                    "y": 1,
+                                    "action": {
+                                        "type": "origins:if_else",
+                                        "condition": {
+                                            "type": "origins:movement_blocking",
+                                            "inverted": true
+                                        },
+                                        "if_action": {
+                                            "type": "origins:execute_command",
+                                            "command": "particle block iron_block ~ ~-0.45 ~ 0.15 0 0.15 1 1 force @a"
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "origins:offset",
+                                    "z": -1,
+                                    "action": {
+                                        "type": "origins:if_else",
+                                        "condition": {
+                                            "type": "origins:movement_blocking",
+                                            "inverted": true
+                                        },
+                                        "if_action": {
+                                            "type": "origins:execute_command",
+                                            "command": "particle block iron_block ~ ~ ~0.45 0 0.15 0 1 1 force @a"
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "origins:offset",
+                                    "z": 1,
+                                    "action": {
+                                        "type": "origins:if_else",
+                                        "condition": {
+                                            "type": "origins:movement_blocking",
+                                            "inverted": true
+                                        },
+                                        "if_action": {
+                                            "type": "origins:execute_command",
+                                            "command": "particle block iron_block ~ ~ ~-0.45 0 0.15 0 1 1 force @a"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

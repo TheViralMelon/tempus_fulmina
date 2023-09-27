@@ -1,0 +1,19 @@
+{
+    "name": "§b§l§nA Moment, Whole",
+    "description": "Running out of §bCharge§r teleports you to your spawnpoint, causing high-damage §elightning§r to strike both your origin and destination.\nThis fully restores your §bCharge§r and health, §cbut is the only way to do so.",
+    "badges": [
+        {
+            "sprite": "minecraft:textures/item/knowledge_book.png",
+            "text": " If you have no valid spawnpoint, you will reappear at the world spawn point instead. Though the origin of the teleport will still be struck, no §elightning§r will appear at your destination."
+        },
+        {
+            "sprite": "minecraft:textures/item/enchanted_book.png",
+            "text": "You can use the teleport's §elightning§r to inflict extremely high damage if you time it when you're near an enemy (especially a §econductive§r one). Setting your spawnpoint nearby with §bDischarge§r allows further follow-ups or drop collection, too!"
+        },
+        {
+            "sprite": "minecraft:textures/item/book.png",
+            "text": "There is a 1-second period after running out of §bCharge§r before the teleport occurs in which you are invulnerable but remain mobile; a 0.8-second delay after teleporting before reappearing; and a 0.6-second delay after reappearing where you are locked in place and vulnerable to damage. In each of these periods, you are unable to attack, use items, or otherwise interact with the world.\n\nThe §elightning§r strike called down when teleporting does 11 damage in total -- like all lightning, this pierces armor and is doubled for §econductive§r targets.\n\nWhen the teleport effect is initiated, you are automatically cleared of all status effects, including negative ones."
+        }
+    ],
+    "type": "origins:simple"
+}

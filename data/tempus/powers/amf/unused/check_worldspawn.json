@@ -1,0 +1,40 @@
+{
+    "type": "origins:multiple",
+    "callback": {
+        "type": "origins:action_on_callback",
+        "entity_action_gained": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:execute_command",
+                    "command": "data modify entity @s Pos set from storage tempus worldspawn"
+                },
+                {
+                    "type": "origins:if_else",
+                    "condition": {
+                        "type": "origins:in_block_anywhere",
+                        "block_condition": {
+                            "type": "origins:movement_blocking"
+                        }
+                    },
+                    "if_action": {
+                        "type": "origins:execute_command",
+                        "command": "scoreboard players set #obstruction tempus.dummy1 1"
+                    },
+                    "else_action": {
+                        "type": "origins:execute_command",
+                        "command": "scoreboard players set #obstruction tempus.dummy1 0"
+                    }
+                }
+            ]
+        }
+    },
+    "kill": {
+        "type": "origins:action_over_time",
+        "interval": 1,
+        "entity_action": {
+            "type": "origins:execute_command",
+            "command": "kill @s"
+        }
+    }
+}

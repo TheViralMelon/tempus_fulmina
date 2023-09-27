@@ -1,0 +1,151 @@
+{
+    "type": "origins:multiple",
+    "name": "§b§l§nIntensity",
+    "description": "You are bound by your §bCharge§r, which you use for your abilities. §bCharge§r decays over time, faster if you are far away from your spawnpoint.",
+    "badges": [
+        {
+            "sprite": "minecraft:textures/item/knowledge_book.png",
+            "text": "While under 10% §bCharge§r, you gain a bright blue outline."
+        },
+        {
+            "sprite": "minecraft:textures/item/enchanted_book.png",
+            "text": "If you stay within 100 blocks of your spawnpoint and don't use any abilities, a full §bCharge§r meter will deplete in exactly half a day."
+        },
+        {
+            "sprite": "minecraft:textures/item/book.png",
+            "text": "Your §bCharge§r will decrease at a normal rate within 100 blocks of your spawnpoint. After that, it increases depending on how far away you are, capping at 5x decay rate when 500 blocks away or more.\n\nIf you are in a different dimension from your spawnpoint, §bCharge§r decreases at a static rate of 2.5x its normal speed."
+        }
+    ],
+    "resource": {
+        "type": "origins:resource",
+        "min": 0,
+        "max": 12000,
+        "start_value": 12000,
+        "hud_render": {
+            "sprite_location": "origins:textures/gui/resource_bar.png",
+            "bar_index": 2
+        },
+        "min_action": {
+            "type": "origins:grant_power",
+            "power": "tempus:amf/init",
+            "source": "tempus:intensity"
+        }
+    },
+    "calculate-decay-rate": {
+        "type": "origins:action_over_time",
+        "interval": 40,
+        "entity_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:if_else",
+                    "condition": {
+                        "type": "origins:command",
+                        "command": "execute if data entity @s SpawnX",
+                        "comparison": "==",
+                        "compare_to": 0
+                    },
+                    "if_action": {
+                        "type": "origins:execute_command",
+                        "command": "tag @s add tempus.NoSpawn"
+                    }
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "function tempus:intensity/calculate_decay_1"
+                }
+            ]
+        }
+    },
+    "decay": {
+        "type": "origins:action_over_time",
+        "interval": 10,
+        "entity_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:execute_command",
+                    "command": "scoreboard players operation #halved tempus.decay = @s tempus.decay"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "scoreboard players operation #quintupled tempus.decay = @s tempus.decay"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "scoreboard players operation #halved tempus.decay /= 2 tempus.dummy1"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "scoreboard players operation #quintupled tempus.decay *= 5 tempus.dummy1"
+                },
+                {
+                    "type": "origins:if_else_list",
+                    "actions": [
+                        {
+                            "condition": {
+                                "type": "origins:on_block",
+                                "block_condition": {
+                                    "type": "origins:or",
+                                    "conditions": [
+                                        {
+                                            "type": "origins:in_tag",
+                                            "tag": "tempus:copper"
+                                        },
+                                        {
+                                            "type": "origins:in_tag",
+                                            "tag": "tempus:iron"
+                                        }
+                                    ]
+                                }
+                            },
+                            "action": {
+                                "type": "origins:execute_command",
+                                "command": "resource operation @s tempus:intensity/main_resource -= #halved tempus.decay"
+                            }
+                        },
+                        {
+                            "condition": {
+                                "type": "origins:on_block",
+                                "block_condition": {
+                                    "type": "origins:in_tag",
+                                    "tag": "tempus:gold"
+                                }
+                            },
+                            "action": {
+                                "type": "origins:execute_command",
+                                "command": "resource operation @s tempus:intensity/main_resource -= #quintupled tempus.decay"
+                            }
+                        },
+                        {
+                            "condition": {
+                                "type": "origins:constant",
+                                "value": true
+                            },
+                            "action": {
+                                "type": "origins:execute_command",
+                                "command": "resource operation @s tempus:intensity/main_resource -= @s tempus.decay"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "outline": {
+        "type": "origins:self_glow",
+        "bientity_condition": {
+            "type": "origins:can_see"
+        },
+        "condition": {
+            "type": "origins:resource",
+            "resource": "tempus:intensity/main_resource",
+            "comparison": "<=",
+            "compare_to": 3000
+        },
+        "use_teams": false,
+        "red": 0,
+        "blue": 1,
+        "green": 1
+    }
+}

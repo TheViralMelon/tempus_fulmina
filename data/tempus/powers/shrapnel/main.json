@@ -1,0 +1,270 @@
+{
+    "name": "§b§l§nShrapnel",
+    "description": "Firing an arrow while you have a §egold§r or §firon§r nugget will attach it to the arrowhead, causing it to temporarily make anything it hits §econductive§r.",
+    "badges": [
+        {
+            "sprite": "minecraft:textures/item/knowledge_book.png",
+            "text": "This effect works on both blocks and entities. While in flight, the arrows themselves are also affected."
+        },
+        {
+            "sprite": "minecraft:textures/item/book.png",
+            "text": "Struck blocks and entities are affected for 8 seconds.\n\nBoth the arrows and the things they affect will emit §7iron§r or §egold§r particles while this effect is active.\n\nHaving both §7iron§r and §egold§r nuggets in your inventory will prioritize §egold§r arrows.\n\nBlocks struck by tipped arrows will behave as §7iron§r or §egold§r blocks in accordance with §econductivity§r and §6superconductivity§r."
+        }
+    ],
+    "type": "origins:multiple",
+    "tag": {
+        "type": "origins:action_over_time",
+        "interval": 1,
+        "entity_action": {
+            "type": "origins:area_of_effect",
+            "radius": 4,
+            "bientity_condition": {
+                "type": "origins:target_condition",
+                "condition": {
+                    "type": "origins:and",
+                    "conditions": [
+                        {
+                            "type": "origins:nbt",
+                            "nbt": "{HasBeenShot:0b}"
+                        },
+                        {
+                            "type": "origins:in_tag",
+                            "tag": "minecraft:arrows"
+                        }
+                    ]
+                }
+            },
+            "bientity_action": {
+                "type": "origins:if_else",
+                "condition": {
+                    "type": "origins:and",
+                    "conditions": [
+                        {
+                            "type": "origins:actor_condition",
+                            "condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:command",
+                                        "command": "data modify storage tempus shrapnelID set from entity @s UUID",
+                                        "comparison": ">=",
+                                        "compare_to": 0
+                                    },
+                                    {
+                                        "type": "origins:command",
+                                        "command": "clear @s #tempus:shrapnel 0",
+                                        "comparison": ">=",
+                                        "compare_to": 1
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "origins:target_condition",
+                            "condition": {
+                                "type": "origins:command",
+                                "command": "data modify storage tempus shrapnelID set from entity @s Owner",
+                                "comparison": "==",
+                                "compare_to": 0
+                            }
+                        }
+                    ]
+                },
+                "if_action": {
+                    "type": "origins:and",
+                    "actions": [
+                        {
+                            "type": "origins:if_else",
+                            "condition": {
+                                "type": "origins:actor_condition",
+                                "condition": {
+                                    "type": "origins:command",
+                                    "command": "clear @s gold_nugget 1",
+                                    "comparison": ">=",
+                                    "compare_to": 1
+                                }
+                            },
+                            "if_action": {
+                                "type": "origins:target_action",
+                                "action": {
+                                    "type": "origins:execute_command",
+                                    "command": "tag @s add tempus.GoldArrow"
+                                }
+                            },
+                            "else_action": {
+                                "type": "origins:and",
+                                "actions": [
+                                    {
+                                        "type": "origins:target_action",
+                                        "action": {
+                                            "type": "origins:execute_command",
+                                            "command": "tag @s add tempus.IronArrow"
+                                        }
+                                    },
+                                    {
+                                        "type": "origins:actor_action",
+                                        "action": {
+                                            "type": "origins:execute_command",
+                                            "command": "clear @s iron_nugget 1"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "origins:target_action",
+                            "action": {
+                                "type": "origins:and",
+                                "actions": [
+                                    {
+                                        "type": "origins:execute_command",
+                                        "command": "tag @s add tempus.Shrapnel"
+                                    },
+                                    {
+                                        "type": "origins:execute_command",
+                                        "command": "summon armor_stand ~ ~ ~ {Tags:[\"tempus.ShrapnelTracker\",\"tempus.ShrapnelSpawn\"],Marker:1b,Small:1b,Invulnerable:1b,Invisible:1b}"
+                                    },
+                                    {
+                                        "type": "origins:area_of_effect",
+                                        "radius": 2,
+                                        "bientity_condition": {
+                                            "type": "origins:target_condition",
+                                            "condition": {
+                                                "type": "origins:nbt",
+                                                "nbt": "{Tags:[\"tempus.ShrapnelSpawn\"]}"
+                                            }
+                                        },
+                                        "bientity_action": {
+                                            "type": "origins:and",
+                                            "actions": [
+                                                {
+                                                    "type": "origins:invert",
+                                                    "action": {
+                                                        "type": "origins:mount"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "origins:target_action",
+                                                    "action": {
+                                                        "type": "origins:and",
+                                                        "actions": [
+                                                            {
+                                                                "type": "origins:grant_power",
+                                                                "power": "tempus:shrapnel/arrow_tracker",
+                                                                "source": "tempus:shrapnel"
+                                                            },
+                                                            {
+                                                                "type": "origins:execute_command",
+                                                                "command": "tag @s remove tempus.ShrapnelSpawn"
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "type": "origins:if_else",
+                                                    "condition": {
+                                                        "type": "origins:actor_condition",
+                                                        "condition": {
+                                                            "type": "origins:nbt",
+                                                            "nbt": "{Tags:[\"tempus.GoldArrow\"]}"
+                                                        }
+                                                    },
+                                                    "if_action": {
+                                                        "type": "origins:target_action",
+                                                        "action": {
+                                                            "type": "origins:change_resource",
+                                                            "resource": "tempus:shrapnel/arrow_tracker_is_gold",
+                                                            "change": 1
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "hit_entity_gold": {
+        "type": "origins:modify_projectile_damage",
+        "target_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:revoke_power",
+                    "power": "tempus:shrapnel/entity_conductive",
+                    "source": "tempus:shrapnel"
+                },
+                {
+                    "type": "origins:grant_power",
+                    "power": "tempus:shrapnel/entity_conductive",
+                    "source": "tempus:shrapnel"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "function tempus:shrapnel/hit_fx"
+                },
+                {
+                    "type": "origins:change_resource",
+                    "resource": "tempus:shrapnel/entity_conductive_is_gold",
+                    "change": 1,
+                    "operation": "set"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "title @s actionbar [{\"text\":\"You've been struck by\",\"bold\":false},{\"text\":\" Shrapnel \",\"color\":\"gold\",\"bold\":true},{\"text\":\"and are now conductive!\",\"bold\":false}]"
+                }
+            ]
+        },
+        "damage_condition": {
+            "type": "origins:projectile",
+            "projectile_condition": {
+                "type": "origins:nbt",
+                "nbt": "{Tags:[\"tempus.GoldArrow\"]}"
+            }
+        }
+    },
+    "hit_entity_iron": {
+        "type": "origins:modify_projectile_damage",
+        "target_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:revoke_power",
+                    "power": "tempus:shrapnel/entity_conductive",
+                    "source": "tempus:shrapnel"
+                },
+                {
+                    "type": "origins:grant_power",
+                    "power": "tempus:shrapnel/entity_conductive",
+                    "source": "tempus:shrapnel"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "function tempus:shrapnel/hit_fx"
+                },
+                {
+                    "type": "origins:change_resource",
+                    "resource": "tempus:shrapnel/entity_conductive_is_gold",
+                    "change": 0,
+                    "operation": "set"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "title @s actionbar [{\"text\":\"You've been struck by\",\"bold\":false},{\"text\":\" Shrapnel \",\"color\":\"gray\",\"bold\":true},{\"text\":\"and are now conductive!\",\"bold\":false}]"
+                }
+            ]
+        },
+        "damage_condition": {
+            "type": "origins:projectile",
+            "projectile_condition": {
+                "type": "origins:nbt",
+                "nbt": "{Tags:[\"tempus.IronArrow\"]}"
+            }
+        }
+    }
+}

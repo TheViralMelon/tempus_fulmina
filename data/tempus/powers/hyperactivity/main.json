@@ -1,0 +1,26 @@
+{
+    "name": "§b§l§nHyperactivity",
+    "description": "Catching a §eLightning§r §eRod§r in the blast of §bDischarge§r will set your spawnpoint there, and call §elightning§r down upon it. §cThis is the only way for you to set your spawnpoint.",
+    "badges": [
+        {
+            "sprite": "minecraft:textures/item/knowledge_book.png",
+            "text": "If multiple §eLightning§r §eRods§r are caught in the blast of §bDischarge§r, only the nearest one will trigger this effect."
+        },
+        {
+            "sprite": "minecraft:textures/item/book.png",
+            "text": "The resulting §elightning§r from this effect deals 6 base damage. Like all §elightning§r, this is doubled for §econductive§r targets."
+        }
+    ],
+    "type": "origins:multiple",
+    "anchor": {
+        "type": "origins:prevent_block_use",
+        "block_condition": {
+            "type": "origins:block",
+            "block": "minecraft:respawn_anchor"
+        }
+    },
+    "bed": {
+        "type": "origins:prevent_sleep",
+        "message": "§bThe Eternal Current is forever restless."
+    }
+}

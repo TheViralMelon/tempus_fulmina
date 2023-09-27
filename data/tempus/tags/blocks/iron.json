@@ -1,0 +1,28 @@
+{
+    "values": [
+        "minecraft:iron_block",
+        "minecraft:iron_bars",
+        "minecraft:iron_door",
+        "minecraft:iron_trapdoor",
+        "minecraft:iron_ore",
+        "minecraft:deepslate_iron_ore",
+        "minecraft:raw_iron_block",
+        "minecraft:tripwire_hook",
+        "minecraft:stonecutter",
+        "minecraft:smithing_table",
+        "minecraft:rail",
+        "minecraft:piston",
+        "minecraft:hopper",
+        "minecraft:heavy_weighted_pressure_plate",
+        "minecraft:detector_rail",
+        "minecraft:chain",
+        "#minecraft:cauldrons",
+        "minecraft:blast_furnace",
+        "minecraft:anvil",
+        "minecraft:chipped_anvil",
+        "minecraft:damaged_anvil",
+        "minecraft:activator_rail",
+        "minecraft:lantern",
+        "minecraft:soul_lantern"
+    ]
+}

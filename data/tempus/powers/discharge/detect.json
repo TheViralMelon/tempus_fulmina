@@ -1,0 +1,105 @@
+{
+    "type": "origins:action_on_callback",
+    "entity_action_gained": {
+        "type": "origins:and",
+        "actions": [
+            {
+                "type": "origins:area_of_effect",
+                "radius": 12,
+                "bientity_action": {
+                    "type": "origins:target_action",
+                    "action": {
+                        "type": "origins:if_else_list",
+                        "actions": [
+                            {
+                                "condition": {
+                                    "type": "origins:nbt",
+                                    "nbt": "{Tags:[\"tempus.DischargeOwner\"]}"
+                                },
+                                "action": {
+                                    "type": "origins:nothing"
+                                }
+                            },
+                            {
+                                "condition": {
+                                    "type": "origins:entity_type",
+                                    "entity_type": "minecraft:item"
+                                },
+                                "action": {
+                                    "type": "origins:execute_command",
+                                    "command": "execute at @s run function tempus:conductivity/item_check"
+                                }
+                            },
+                            {
+                                "condition": {
+                                    "type": "origins:entity_type",
+                                    "entity_type": "minecraft:falling_block"
+                                },
+                                "action": {
+                                    "type": "origins:execute_command",
+                                    "command": "execute at @s run function tempus:conductivity/fallingblock_check"
+                                }
+                            },
+                            {
+                                "condition": {
+                                    "type": "origins:in_tag",
+                                    "tag": "c:minecarts"
+                                },
+                                "action": {
+                                    "type": "origins:execute_command",
+                                    "command": "scoreboard players set @s tempus.conductive 1"
+                                }
+                            },
+                            {
+                                "condition": {
+                                    "type": "origins:and",
+                                    "conditions": [
+                                        {
+                                            "type": "origins:in_tag",
+                                            "tag": "minecraft:arrows"
+                                        },
+                                        {
+                                            "type": "origins:or",
+                                            "conditions": [
+                                                {
+                                                    "type": "origins:nbt",
+                                                    "nbt": "{Tags:[\"tempus.GoldArrow\"]}"
+                                                },
+                                                {
+                                                    "type": "origins:nbt",
+                                                    "nbt": "{Tags:[\"tempus.IronArrow\"]}"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "action": {
+                                    "type": "origins:execute_command",
+                                    "command": "scoreboard players set @s tempus.conductive 1"
+                                }
+                            },
+                            {
+                                "condition": {
+                                    "type": "origins:living"
+                                },
+                                "action": {
+                                    "type": "origins:grant_power",
+                                    "power": "tempus:conductivity/check",
+                                    "source": "tempus:conductivity"
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "type": "origins:execute_command",
+                "command": "execute at @s run function tempus:discharge/throwmeintoasilvermine"
+            },
+            {
+                "type": "origins:execute_command",
+                "command": "kill @s"
+            }
+        ]
+    }
+}

@@ -1,0 +1,92 @@
+{
+    "type": "origins:action_on_callback",
+    "entity_action_gained": {
+        "type": "origins:area_of_effect",
+        "radius": 30,
+        "bientity_condition": {
+            "type": "origins:target_condition",
+            "condition": {
+                "type": "origins:nbt",
+                "nbt": "{Tags:[\"tempus.LightningTarget\"]}"
+            }
+        },
+        "bientity_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:target_action",
+                    "action": {
+                        "type": "origins:if_else",
+                        "condition": {
+                            "type": "origins:living"
+                        },
+                        "if_action": {
+                            "type": "origins:grant_power",
+                            "power": "tempus:conductivity/check",
+                            "source": "tempus:conductivity"
+                        }
+                    }
+                },
+                {
+                    "type": "origins:if_else",
+                    "condition": {
+                        "type": "origins:target_condition",
+                        "condition": {
+                            "type": "origins:scoreboard",
+                            "objective": "tempus.conductive",
+                            "comparison": "==",
+                            "compare_to": 1
+                        }
+                    },
+                    "if_action": {
+                        "type": "origins:and",
+                        "actions": [
+                            {
+                                "type": "origins:target_action",
+                                "action": {
+                                    "type": "origins:execute_command",
+                                    "command": "scoreboard players reset @s tempus.conductive"
+                                }
+                            },
+                            {
+                                "type": "origins:damage",
+                                "amount": 12,
+                                "source": {
+                                    "name": "lightningBolt.player",
+                                    "unblockable": true,
+                                    "bypasses_armor": true,
+                                    "magic": true
+                                }
+                            }
+                        ]
+                    },
+                    "else_action": {
+                        "type": "origins:damage",
+                        "amount": 6,
+                        "source": {
+                            "name": "lightningBolt.player",
+                            "unblockable": true,
+                            "bypasses_armor": true,
+                            "magic": true
+                        }
+                    }
+                },
+                {
+                    "type": "origins:target_action",
+                    "action": {
+                        "type": "origins:execute_command",
+                        "command": "tag @s remove tempus.LightningTarget"
+                    }
+                },
+                {
+                    "type": "origins:actor_action",
+                    "action": {
+                        "type": "origins:execute_command",
+                        "command": "power revoke @s tempus:lightning_check",
+                        "source": "tempus:hyperactivity"
+                    }
+                }
+            ]
+        }
+    }
+}

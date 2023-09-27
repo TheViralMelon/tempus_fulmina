@@ -1,0 +1,54 @@
+{
+    "type": "origins:multiple",
+    "immunity": {
+        "type": "origins:invulnerability",
+        "damage_condition": {
+            "type": "origins:or",
+            "conditions": [
+                {
+                    "type": "origins:name",
+                    "name": "fall"
+                },
+                {
+                    "type": "origins:name",
+                    "name": "fall.player"
+                }
+            ]
+        }
+    },
+    "remove_land": {
+        "type": "origins:action_on_land",
+        "entity_action": {
+            "type": "origins:delay",
+            "ticks": 1,
+            "action": {
+                "type": "origins:revoke_power",
+                "power": "tempus:discharge/immunity",
+                "source": "tempus:discharge"
+            }
+        }
+    },
+    "remove_flight": {
+        "type": "origins:action_over_time",
+        "interval": 5,
+        "condition": {
+            "type": "origins:or",
+            "conditions": [
+                {
+                    "type": "origins:creative_flying"
+                },
+                {
+                    "type": "origins:fall_flying"
+                },
+                {
+                    "type": "origins:riding"
+                }
+            ]
+        },
+        "entity_action": {
+            "type": "origins:revoke_power",
+            "power": "tempus:discharge/immunity",
+            "source": "tempus:discharge"    
+        }
+    }
+}
